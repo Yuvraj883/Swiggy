@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.test{
+    background-color: black;
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

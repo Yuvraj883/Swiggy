@@ -2,7 +2,6 @@
   "name": "swiggy",
   "version": "1.0.0",
   "description": "This Swiggy clone app is made by Yuvraj Singh.",
-  "main": "index.js",
   "scripts": {
     "start": "parcel ./public/index.html",
     "build": "parcel build ./public/index.html",

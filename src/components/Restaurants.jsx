@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import RestaurantCard from "../RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 
 const Restaurants= ()=>{
     const [restaurants, setRestaurants] = useState(null);

@@ -4,13 +4,18 @@ import Search from "./components/Search";
 import { children } from "react";
 import RestaurantPage from "./components/RestaurantPage";
 import ErrorPage from "./components/ErrorPage";
-
+import Home from "./components/Home";
 const router = createBrowserRouter([
     {
         path:"/",
         element: <App/>,
-        errorElement: <ErrorPage/>,
+        errorElement:<ErrorPage/>,
         children:[
+            {
+                path:"/",
+                element: <Home/>,
+
+            },
             {
                 path:"search",
                 element: <Search/>
@@ -18,7 +23,7 @@ const router = createBrowserRouter([
             } ,
            
             {
-                path:'/restaurant-page',
+                path:'restaurant-page',
                 element:<RestaurantPage/>
             }
         ], 

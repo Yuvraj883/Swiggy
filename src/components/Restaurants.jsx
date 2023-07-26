@@ -3,9 +3,23 @@ import RestaurantCard from "./RestaurantCard";
 import useGetRestaurants from "../utils/useGetRestaurants";
 
 const Restaurants= ()=>{
-//   const [restaurants, setRestaurants] = useState(null);
+  const [restaurants, setRestaurants] = useState(null);
 //   setRestaurants(()=>{useGetRestaurants()});
-const restaurants = useGetRestaurants();
+
+const {getRestaurants} = useGetRestaurants();
+
+useEffect(()=>{
+    console.log("Use effect called ")
+    getRestaurants().then((data)=>{
+        console.log(data); 
+        setRestaurants(data);
+    }).catch((error)=>{
+        console.log("Error: ", error);
+    });
+    
+    // setRestaurants(r);
+
+},[]);
    
     if(restaurants === null){
         return <div>Loading...</div>

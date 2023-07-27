@@ -8,35 +8,34 @@ const Search = () => {
     const { getRestaurants } = useGetRestaurants();
     const [searchResult, setSearchResult] = useState(null);
     const [restaurants, setRestaurants] = useState(null);
-    // setSearchResult(restaurants);
+    let list = null;
+
     useEffect(() => {
         getRestaurants().then((data) => {
             setSearchResult(data);
+            list = data;
         }).catch((error) => {
             console.log("Error: " + error);
         });
-    },[])
+    }, [])
 
-    const handleSearchRestaurant = ()=>{
-        filterSearchResult();
-    }
     console.log(searchResult);
 
-    const filterSearchResult = ()=>{
-     const temp = searchResult?.filter((restaurant)=>{
-            restaurant?.info?.name !== searchText;
+
+    const handleSearchRestaurant = () => {
+        filterSearchResult();
+    }
+
+    const filterSearchResult = () => {
+        const temp = searchResult?.filter((restaurant) => {
+            restaurant?.info?.name?.toLowerCase() !== searchText.toLowerCase();
             console.log(searchText);
 
         });
         console.log(temp);
         setRestaurants(temp);
-        
-    }
 
-    // const find = searchResult.find((restaurant)=>{
-    //     searchText === restaurant?.info?.name;
-    // })
-    // // console.log(find);
+    }
 
     return (
 
@@ -48,16 +47,24 @@ const Search = () => {
                         value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
                     <button onClick={handleSearchRestaurant} className=' text-[#3D4152] hover:text-orange-500 cursor-pointer'> <ImSearch size={30} /> </button>
                 </div>
+                {list?.map((result) => {
+                            <RestaurantCard restaurant={result?.info} key={result?.info.id} />
+                        })}
+            </div>
+            <div>
+            {searchResult?.map((result) => {
+                            <RestaurantCard restaurant={result?.info} key={result?.info.id} />
+                        })}
+                {
+                    searchResult ? (<div>
+                        {list?.map((result) => {
+                            <RestaurantCard restaurant={result?.info} key={result?.info.id} />
+                        })}
+
+                    </div>) : <div>Restaurants</div>
+                }
             </div>
 
-          {
-            searchResult? (<div>
-{searchResult.map((result)=>{
-    <RestaurantCard restaurant={result?.info} key={result?.info.id}/>
-})}
-
-            </div>): <div>Restaurants</div>
-          }
 
         </>
     )

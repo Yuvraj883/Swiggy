@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 import useGetRestaurants from "../utils/useGetRestaurants";
 
 const Restaurants= ()=>{
@@ -22,7 +23,7 @@ useEffect(()=>{
 },[]);
    
     if(restaurants === null){
-        return <div>Loading...</div>
+        return <div><Shimmer/></div>
     }
 
     return  (

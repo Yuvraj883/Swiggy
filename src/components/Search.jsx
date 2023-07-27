@@ -1,41 +1,20 @@
 import { ImSearch } from 'react-icons/im'
 import { useEffect, useState } from 'react';
-import useGetRestaurants from "../utils/useGetRestaurants";
-import RestaurantCard from './RestaurantCard';
+// import useGetRestaurants from "../utils/useGetRestaurants";
 
-const Search = () => {
-    const [searchText, setSearchText] = useState('');
-    const { restaurants } = useGetRestaurants();
-    const [searchResult, setSearchResult] = useState(null);
+
+const Search = (props) => {
+    const {searchText, setSearchText} = props;
+    // const { filterSearchResult } = useGetRestaurants();
+    // const [searchResult, setSearchResult] = useState(null);
    
 
     // useEffect(() => {
-    //     getRestaurants().then((data) => {
-    //         setSearchResult(data);
-    //         list = data;
-    //     }).catch((error) => {
-    //         console.log("Error: " + error);
-    //     });
-    // }, [])
-
-    console.log(searchResult);
+    //     filterSearchResult(searchText)
+    // }, [searchText])
 
 
-    const handleSearchRestaurant = () => {
-        filterSearchResult();
-    }
-
-    const filterSearchResult = () => {
-        const temp = restaurants?.filter((restaurant) => {
-            restaurant?.info?.name?.toLowerCase() !== searchText.toLowerCase();
-            console.log(searchText);
-
-        });
-        console.log(temp);
-        setSearchResult(temp);
-
-    }
-
+   
 
     return (
 
@@ -45,14 +24,14 @@ const Search = () => {
                     <input className="w-[95%] p-2  rounded-l-3xl font-semibold text-md bg-slate-100  "
                         type="text" placeholder="search restaurant..."
                         value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
-                    <button onClick={handleSearchRestaurant} className=' text-[#3D4152] hover:text-orange-500 cursor-pointer'> <ImSearch size={30} /> </button>
+                    <button onClick={() => {filterSearchResult(searchText)}} className=' text-[#3D4152] hover:text-orange-500 cursor-pointer'> <ImSearch size={30} /> </button>
                 </div>
                 {/* {list?.map((result) => {
                             <RestaurantCard restaurant={result?.info} key={result?.info.id} />
                         })} */}
             </div>
             <div>
-            {searchResult?.map((result) => {
+            {/* {searchResult?.map((result) => {
                             <RestaurantCard restaurant={result?.info} key={result?.info.id} />
                         })}
                 {
@@ -62,7 +41,7 @@ const Search = () => {
                         })}
 
                     </div>) : <div>Restaurants</div>
-                }
+                } */}
             </div>
 
 

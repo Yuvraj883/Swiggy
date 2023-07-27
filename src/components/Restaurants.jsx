@@ -3,13 +3,10 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useGetRestaurants from "../utils/useGetRestaurants";
 
-const Restaurants = () => {
-    const { restaurants, getRestaurants } = useGetRestaurants();
+const Restaurants = (props) => {
+    const restaurants = props.data;
 
-    useEffect(() => {
-        getRestaurants();
-    }, []);
-
+    console.log("Rest", props)
     if (restaurants === null) {
         return <div><Shimmer /></div>
     }

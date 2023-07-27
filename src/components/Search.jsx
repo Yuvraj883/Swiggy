@@ -5,19 +5,18 @@ import RestaurantCard from './RestaurantCard';
 
 const Search = () => {
     const [searchText, setSearchText] = useState('');
-    const { getRestaurants } = useGetRestaurants();
+    const { restaurants } = useGetRestaurants();
     const [searchResult, setSearchResult] = useState(null);
-    const [restaurants, setRestaurants] = useState(null);
-    let list = null;
+   
 
-    useEffect(() => {
-        getRestaurants().then((data) => {
-            setSearchResult(data);
-            list = data;
-        }).catch((error) => {
-            console.log("Error: " + error);
-        });
-    }, [])
+    // useEffect(() => {
+    //     getRestaurants().then((data) => {
+    //         setSearchResult(data);
+    //         list = data;
+    //     }).catch((error) => {
+    //         console.log("Error: " + error);
+    //     });
+    // }, [])
 
     console.log(searchResult);
 
@@ -27,15 +26,16 @@ const Search = () => {
     }
 
     const filterSearchResult = () => {
-        const temp = searchResult?.filter((restaurant) => {
+        const temp = restaurants?.filter((restaurant) => {
             restaurant?.info?.name?.toLowerCase() !== searchText.toLowerCase();
             console.log(searchText);
 
         });
         console.log(temp);
-        setRestaurants(temp);
+        setSearchResult(temp);
 
     }
+
 
     return (
 
@@ -47,9 +47,9 @@ const Search = () => {
                         value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
                     <button onClick={handleSearchRestaurant} className=' text-[#3D4152] hover:text-orange-500 cursor-pointer'> <ImSearch size={30} /> </button>
                 </div>
-                {list?.map((result) => {
+                {/* {list?.map((result) => {
                             <RestaurantCard restaurant={result?.info} key={result?.info.id} />
-                        })}
+                        })} */}
             </div>
             <div>
             {searchResult?.map((result) => {

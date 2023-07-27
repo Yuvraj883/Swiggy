@@ -3,44 +3,32 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useGetRestaurants from "../utils/useGetRestaurants";
 
-const Restaurants= ()=>{
-  const [restaurants, setRestaurants] = useState(null);
-//   setRestaurants(()=>{useGetRestaurants()});
+const Restaurants = () => {
+    const { restaurants, getRestaurants } = useGetRestaurants();
 
-const {getRestaurants} = useGetRestaurants();
+    useEffect(() => {
+        getRestaurants();
+    }, []);
 
-useEffect(()=>{
-    console.log("Use effect called ")
-    getRestaurants().then((data)=>{
-        console.log(data); 
-        setRestaurants(data);
-    }).catch((error)=>{
-        console.log("Error: ", error);
-    });
-    
-    // setRestaurants(r);
-
-},[]);
-   
-    if(restaurants === null){
-        return <div><Shimmer/></div>
+    if (restaurants === null) {
+        return <div><Shimmer /></div>
     }
 
-    return  (
+    return (
         <>
-        <h1 className="text-2xl font-extrabold  px-[10%] m-2">Restaurants with online food delivery in Delhi</h1>
-        <div className="flex flex-row flex-wrap  px-[10%] m-0">
-        {
-            restaurants?.map((restaurant)=>(
-                <RestaurantCard key={restaurant?.info?.id} restaurant={restaurant?.info}/>
-                 
-            )
-            
-            )
+            <h1 className="text-2xl font-extrabold  px-[10%] m-2">Restaurants with online food delivery in Delhi</h1>
+            <div className="flex flex-row flex-wrap  px-[10%] m-0">
+                {
+                    restaurants?.map((restaurant) => (
+                        <RestaurantCard key={restaurant?.info?.id} restaurant={restaurant?.info} />
 
-        }
-        </div>
+                    )
+
+                    )
+
+                }
+            </div>
         </>
     )
 }
-export default Restaurants ;
+export default Restaurants;

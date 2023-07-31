@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import {BsSearch} from 'react-icons/bs'
+// import {BsSearch} from 'react-icons/bs'
 import restaurantContext from '../context/restaurantContext';
 import RestaurantCard from './RestaurantCard';
 const Search = ()=>{
@@ -43,13 +43,13 @@ const Search = ()=>{
     <div className='flex flex-row justify-center'>
 
     
-    <div className="my-8 w-[60%] flex justify-between items-center pr-2 rounded-full border-2 border-black ">
+    <div className="my-8 w-[60%] flex justify-between items-center  border-black ">
         <input
         value={searchText}
         onChange={(e)=>{
             setSearchText(e.target.value);
         }}
-        className=' p-3 mr-2 w-[95%] focus:border-orange-500 rounded-l-full' type="text" placeholder="Search restaurants"/>
+        className=' p-3 mr-2 w-[100%] focus:border-orange-500 rounded-full' type="text" placeholder="Search restaurants"/>
         {/* <BsSearch onClick={handleSearch} className='cursor-pointer text-[#3D4152] hover:text-orange-500' size={30}/> */}
     </div>
 
@@ -58,7 +58,7 @@ const Search = ()=>{
         {   filteredRestaurants?.length===0 ? <h1 className='text-red-500 font-semibold text-xl'>Couldn't find any restaurant named '{searchText}'</h1> :
 
             filteredRestaurants?.map((restaurant)=>{
-                return <RestaurantCard restaurant={restaurant}/>
+                return <RestaurantCard key={restaurant?.info?.id} restaurant={restaurant}/>
             })
 
         }

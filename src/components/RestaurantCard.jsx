@@ -11,12 +11,12 @@ const RestaurantCard = (restaurant) => {
             <div className='px-2'>
                 <h1 className='line-clamp-1 font-bold text-xl'>{restro?.name} </h1>
 
-                <span className='flex flex-row text-lg'>
+                <span className='flex flex-row text-lg font-semibold'>
                     <img className='h-6 mr-1' src={require('../assets/green-star.png')} alt="star-icon" />
                     {restro?.avgRating}
                 </span>
 
-                <p>{restro?.cuisines?.join(" ")}</p>
+                <p className='text-gray-600'>{restro?.cuisines?.join(" ")}</p>
 
             </div>
 

@@ -1,10 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import restaurantContext from "../context/restaurantContext";
 import RestaurantCard from "./RestaurantCard";
 
 const OnlineRestaurants = ()=>{
     const restaurants = useContext(restaurantContext);
-    const [listOfRestaurants, setListOfRestaurants] = useState(restaurants?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    const [listOfRestaurants, setListOfRestaurants] = useState(null);
+
+    useEffect(()=>{
+    setListOfRestaurants(restaurants?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    },[restaurants])
+    
     console.log(listOfRestaurants);
 
 

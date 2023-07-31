@@ -11,7 +11,7 @@ const OnlineRestaurants = ()=>{
     return (
         <>
         <div >
-            <h1>Restaurants with online food delivery in Delhi</h1>
+            <h1 className="font-bold text-2xl mt-2 mb-4">Restaurants with online food delivery in Delhi</h1>
             <div className="flex flex-row flex-wrap">
             {
                 listOfRestaurants?.map((restaurant)=>{

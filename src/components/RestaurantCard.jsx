@@ -4,7 +4,7 @@ const RestaurantCard = (restaurant) => {
 
     console.log(restro);
     return (<>
-        <div className='h-72 w-[25%] p-2 my-2' key={restro?.id}>
+        <div className='h-72 w-[23.5%] mx-2 my-2 cursor-pointer' key={restro?.id}>
 
             <img className='h-48 w-full rounded-xl' src={`${IMG_URL}${restro?.cloudinaryImageId}`} alt="restaurant" />
             <h1 className='line-clamp-1'>{restro?.name} </h1>

@@ -20,7 +20,7 @@ const OnlineRestaurants = ()=>{
             <div className="flex flex-row flex-wrap">
             {
                 listOfRestaurants?.map((restaurant)=>{
-                   return <RestaurantCard restaurant={restaurant}/>
+                   return <RestaurantCard key={restaurant?.info?.id} restaurant={restaurant}/>
                 
                 })
             }

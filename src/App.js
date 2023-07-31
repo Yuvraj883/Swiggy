@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 import Navbar from './components/Navbar';
 import RestaurantContext from './context/restaurantContext';
 // import useGetRestaurants from './utils/useGetRestaurants';

@@ -2,7 +2,7 @@
 const Navbar = ()=>{
     return(
         <>
-        <nav className="px-[10%] flex justify-between items-center p-2 ">
+        <nav className="px-[10%] flex justify-between items-center p-2 shadow-md ">
             <div className="flex flex-row items-center">
                 <img src={require("../assets/swiggy-logo.png")} 
                 className="h-16 w-auto"

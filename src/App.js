@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import RestaurantContext from './context/restaurantContext';
 // import useGetRestaurants from './utils/useGetRestaurants';
-import TopRestaurants from './components/TopRestaurants';
+import OnlineRestaurants from './components/OnlineRestaurants';
 
 function App() {
   const [restaurants, setRestaurants] = useState(null);
@@ -30,20 +30,25 @@ function App() {
 
   }
 
-  if(!restaurants){
-   return <div>...Loading</div>
-  }
+  // if(!restaurants){
+  //  return <div>...Loading</div>
+  // }
 
 
   return (
     <>
-      <RestaurantContext.Provider value={restaurants}>
+   <Navbar />
+
+{
+  restaurants &&
+  <RestaurantContext.Provider value={restaurants}>
 
         <div className="px-[10%]">
-          <Navbar />
-          <TopRestaurants />
+          <OnlineRestaurants />
         </div>
       </RestaurantContext.Provider>
+}
+      
 
     </>
   );

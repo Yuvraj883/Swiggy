@@ -5,3 +5,5 @@ const Home = ()=>{
     <OnlineRestaurants/>
     </>)
 }
+
+export default Home;

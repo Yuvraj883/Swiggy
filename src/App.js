@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import RestaurantContext from './context/restaurantContext';
 // import useGetRestaurants from './utils/useGetRestaurants';
 import OnlineRestaurants from './components/OnlineRestaurants';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [restaurants, setRestaurants] = useState(null);
@@ -43,7 +44,7 @@ function App() {
   <RestaurantContext.Provider value={restaurants}>
 
         <div className="px-[10%]">
-          <OnlineRestaurants />
+          <Outlet/>
         </div>
       </RestaurantContext.Provider>
 }

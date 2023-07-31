@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 const Navbar = ()=>{
     return(
@@ -10,7 +11,7 @@ const Navbar = ()=>{
                 <h1 className="text-orange-400 font-bold text-4xl ">Swiggy</h1>
             </div>
             <ul className="text-lg font-semibold flex text-[#3D4152]">
-                <li className="hover:text-orange-400 p-2 cursor-pointer">Search</li>
+                <li className="hover:text-orange-400 p-2 cursor-pointer"><NavLink activeClassName="text-orange-500" to="search">Search</NavLink></li>
                 <li className="hover:text-orange-400 p-2 cursor-pointer">Offers</li>
                 <li className="hover:text-orange-400 p-2 cursor-pointer">Help</li>
                 <li className="hover:text-orange-400 p-2 cursor-pointer">Sign in</li>

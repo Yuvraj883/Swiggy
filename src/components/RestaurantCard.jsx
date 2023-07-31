@@ -5,8 +5,8 @@ const RestaurantCard = (restaurant) => {
 
     console.log(restro);
     return (<>
-    <Link to={`restaurant/${restro?.id}`}>
-        <div className='h-72 w-[23.5%] mx-2 my-2 cursor-pointer ' >
+    <Link className='h-72 w-[23.5%] mx-2 my-2 cursor-pointer ' to={`restaurant/${restro?.id}`}>
+        <div  >
 
             <img className='h-48 w-full rounded-2xl' src={`${IMG_CDN_URL}${restro?.cloudinaryImageId}`} alt="restaurant" />
 

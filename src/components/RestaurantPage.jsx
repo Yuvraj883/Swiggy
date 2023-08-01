@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import {useEffect, useState} from 'react';
+import { IMG_CDN_URL } from "../utils/helper";
+import Navbar from "./Navbar";
 
 const RestaurantPage = ()=>{
-    const [restrauntDetails, setRestaurantDetails] = useState(null);
+    const [restaurantDetails, setRestaurantDetails] = useState(null);
     const {id} = useParams();
 
     useEffect(()=>{
@@ -13,17 +15,20 @@ const RestaurantPage = ()=>{
         const url = `https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.5940947&lng=85.1375645&restaurantId=${id}`
         const response = await fetch(url); 
         const data = await response.json(); 
-        setRestaurantDetails(data?.data?.cards);
+        setRestaurantDetails(data?.data);
 
     }
     useEffect(()=>{
-        console.log(restrauntDetails);
+        console.log(restaurantDetails);
 
-    },[restrauntDetails]);
+    },[restaurantDetails]);
 
-    return(
+    return (!restaurantDetails) ?(<h1>Loading...</h1>): 
+    (
         <>
-        <h1>{id}</h1>
+        <Navbar/>
+        <img src={`${IMG_CDN_URL}${restaurantDetails?.cards[0]?.card?.card?.info?.cloudinaryImageId}`} alt="restaurant img"/>
+        <h1>{restaurantDetails?.cards[0]?.card?.card?.info?.name}</h1>
         </>
     )
 }

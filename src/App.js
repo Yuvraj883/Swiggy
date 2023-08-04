@@ -1,55 +1,45 @@
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import RestaurantContext from './context/restaurantContext';
-// import useGetRestaurants from './utils/useGetRestaurants';
-import OnlineRestaurants from './components/OnlineRestaurants';
+import useGetRestaurants from './utils/useGetRestaurants';
 import { Outlet } from 'react-router-dom';
+import Shimmer from './components/Shimmer';
 
 function App() {
+  const { fetchRestaurants } = useGetRestaurants();
   const [restaurants, setRestaurants] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const restaurantsData = await fetchRestaurants();
+        setRestaurants(restaurantsData);
+      } catch (error) {
+        console.error('Error fetching restaurants:', error);
+      } finally {
+        setIsLoading(false); // Set loading state to false regardless of success or error
+      }
+    };
 
-    fetchRestaurants();
-
+    fetchData();
   }, []);
 
-  useEffect(()=>{
-    console.log(restaurants);
-
-  },[restaurants]);
-
-
-  const fetchRestaurants = async () => {
-    const url = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-    const response = await fetch(url);
-    response.json().then((data) => {
-      console.log(data);
-      setRestaurants(data);
-    })
-
+  // Handle loading state
+  if (isLoading) {
+    return <Shimmer />;
   }
-
-  // if(!restaurants){
-  //  return <div>...Loading</div>
-  // }
-
 
   return (
     <>
-   <Navbar />
-
-{
-  restaurants &&
-  <RestaurantContext.Provider value={restaurants}>
-
-        <div className="px-[10%]">
-          <Outlet/>
-        </div>
-      </RestaurantContext.Provider>
-}
-      
-
+      <Navbar />
+      {restaurants && (
+        <RestaurantContext.Provider value={restaurants}>
+          <div className="px-[10%]">
+            <Outlet />
+          </div>
+        </RestaurantContext.Provider>
+      )}
     </>
   );
 }

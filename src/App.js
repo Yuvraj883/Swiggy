@@ -8,7 +8,7 @@ import Shimmer from './components/Shimmer';
 function App() {
   const { fetchRestaurants } = useGetRestaurants();
   const [restaurants, setRestaurants] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,28 +18,33 @@ function App() {
       } catch (error) {
         console.error('Error fetching restaurants:', error);
       } finally {
-        setIsLoading(false); // Set loading state to false regardless of success or error
+        setIsLoading(false); 
       }
     };
 
     fetchData();
   }, []);
 
-  // Handle loading state
-  if (isLoading) {
-    return <Shimmer />;
-  }
+
+  // if (isLoading) {
+  //   return <Shimmer />;
+  // }
 
   return (
     <>
       <Navbar />
-      {restaurants && (
+      {!isLoading && (
         <RestaurantContext.Provider value={restaurants}>
           <div className="px-[10%]">
             <Outlet />
           </div>
         </RestaurantContext.Provider>
       )}
+      {
+        isLoading &&(
+          <Shimmer/>
+        )
+      }
     </>
   );
 }

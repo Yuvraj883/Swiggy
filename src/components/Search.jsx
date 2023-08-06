@@ -49,7 +49,7 @@ const Search = ()=>{
         onChange={(e)=>{
             setSearchText(e.target.value);
         }}
-        className=' p-3 mr-2 w-[100%] focus:border-orange-500 rounded-full' type="text" placeholder="Search restaurants"/>
+        className=' p-3 mr-2 w-[100%] focus:border-orange-500 rounded-full bg-gray-100' type="text" placeholder="Find your favourite restaurant..."/>
         {/* <BsSearch onClick={handleSearch} className='cursor-pointer text-[#3D4152] hover:text-orange-500' size={30}/> */}
     </div>
 

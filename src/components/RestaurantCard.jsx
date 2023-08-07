@@ -3,7 +3,7 @@ import {Link } from 'react-router-dom'
 const RestaurantCard = (restaurant) => {
     const restro = restaurant?.restaurant?.info;
 
-    console.log(restro);
+    // console.log(restro);
     return (<>
     <Link className='h-72 w-[23.5%] mx-2 my-2 cursor-pointer ' to={`restaurant/${restro?.id}`}>
         <div  >
